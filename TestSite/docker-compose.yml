@@ -6,14 +6,12 @@ networks:
   internal:
     external: false
 
-
 services: 
-  
   db:
     image: mysql:8.0.19
     container_name: "mysqldb"
     volumes:
-      - db_data:/var/lib/testsite
+      - ./mysql-data:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=123456
@@ -36,15 +34,6 @@ services:
       # Get the routes from http
       - "traefik.http.routers.wordpresscp.rule=Host(`wp.localhost`)"
       - "traefik.http.routers.wordpresscp.entrypoints=web"
-      # Redirect these routes to https
-      #- "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      #- "traefik.http.routers.wordpresscp.middlewares=redirect-to-https@docker"
-      # Get the routes from https
-      #- "traefik.http.routers.wordpresscp-secured.rule=Host(`wp.localhost`)"
-      #- "traefik.http.routers.wordpresscp-secured.entrypoints=web-secure"
-      # Apply autentificiation with http challenge
-      #- "traefik.http.routers.wordpresscp-secured.tls=true"
-      #- "traefik.http.routers.wordpresscp-secured.tls.certresolver=myhttpchallenge"
     environment:
       - WORDPRESS_DB_HOST=db:3306
       - WORDPRESS_DB_USER=admin
@@ -69,15 +58,6 @@ services:
       # Get the routes from http
       - "traefik.http.routers.phpmyadmin.rule=Host(`dbadmin.localhost`)"
       - "traefik.http.routers.phpmyadmin.entrypoints=web"
-      # Redirect these routes to https
-      #- "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      #- "traefik.http.routers.phpmyadmin.middlewares=redirect-to-https@docker"
-      # Get the routes from https
-      #- "traefik.http.routers.phpmyadmin-secured.rule=Host(`dbadmin.localhost`)"
-      #- "traefik.http.routers.phpmyadmin-secured.entrypoints=web-secure"
-      # Apply autentificiation with http challenge
-      #- "traefik.http.routers.phpmyadmin-secured.tls=true"
-      #- "traefik.http.routers.phpmyadmin-secured.tls.certresolver=myhttpchallenge"
     environment: 
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: 123456
@@ -87,5 +67,5 @@ services:
       - traefik
       - internal
   
-volumes:
-  db_data:
+#volumes:
+#  db_data:

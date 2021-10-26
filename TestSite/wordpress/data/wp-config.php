@@ -43,6 +43,8 @@ if (!function_exists('getenv_docker')) {
 /** The name of the database for WordPress */
 define( 'DB_NAME', getenv_docker('WORDPRESS_DB_NAME', 'wordpress') );
 
+define('FS_METHOD', 'direct');
+
 /** MySQL database username */
 define( 'DB_USER', getenv_docker('WORDPRESS_DB_USER', 'example username') );
 

@@ -6,9 +6,7 @@ networks:
   backend:
     external: false
 
-
 services: 
-  
   dbtwo:
     image: mysql:8.0.19
     container_name: "mysqltwo"
@@ -36,15 +34,6 @@ services:
       # Get the routes from http
       - "traefik.http.routers.wordpresstwo.rule=Host(`wptwo.localhost`)"
       - "traefik.http.routers.wordpresstwo.entrypoints=web"
-      # Redirect these routes to https
-      #- "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      #- "traefik.http.routers.wordpresstwo.middlewares=redirect-to-https@docker"
-      # Get the routes from https
-      #- "traefik.http.routers.wordpresstwo-secured.rule=Host(`wptwo.localhost`)"
-      #- "traefik.http.routers.wordpresstwo-secured.entrypoints=web-secure"
-      # Apply autentificiation with http challenge
-      #- "traefik.http.routers.wordpresstwo-secured.tls=true"
-      #- "traefik.http.routers.wordpresstwo-secured.tls.certresolver=myhttpchallenge"
     environment:
       - WORDPRESS_DB_HOST=dbtwo:3306
       - WORDPRESS_DB_USER=admin
@@ -69,15 +58,6 @@ services:
       # Get the routes from http
       - "traefik.http.routers.phpmyadmintwo.rule=Host(`dbadmintwo.localhost`)"
       - "traefik.http.routers.phpmyadmintwo.entrypoints=web"
-      # Redirect these routes to https
-      #- "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      #- "traefik.http.routers.phpmyadmintwo.middlewares=redirect-to-https@docker"
-      # Get the routes from https
-      #- "traefik.http.routers.phpmyadmintwo-secured.rule=Host(`dbadmintwo.localhost`)"
-      #- "traefik.http.routers.phpmyadmintwo-secured.entrypoints=web-secure"
-      # Apply autentificiation with http challenge
-      #- "traefik.http.routers.phpmyadmintwo-secured.tls=true"
-      #- "traefik.http.routers.phpmyadmintwo-secured.tls.certresolver=myhttpchallenge"
     environment: 
       PMA_HOST: dbtwo
       MYSQL_ROOT_PASSWORD: 123456
