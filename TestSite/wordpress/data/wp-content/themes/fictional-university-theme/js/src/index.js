@@ -51,6 +51,7 @@ registerBlockType('bnsgutengerg/testblock', {
         function updateclientsecret(){
             props.setAttributes({clientsecret: event.target.value})
         }
+        
 
         async function sendGreeting(){
             const data = {
@@ -89,16 +90,35 @@ registerBlockType('bnsgutengerg/testblock', {
                 <div>
                     <input type="text" placeholder = "UserInput" value = {props.attributes.userinput} onChange={updateUserinput}/>
                 </div>,
+                <br/>,
                 <div>
-                    <input type="text" placeholder = "Post onChange" value = {props.attributes.apidata} onChange={sendGreeting}/>
+                    {/*<input type="text" placeholder = "Post onChange" value = {props.attributes.apidata} onChange={sendGreeting}/>*/}
+                    <button type="button" onClick={sendGreeting}>Post Greeting</button>
                 </div>
             
         ]);
 	},
 
     save(props) {
+
+            componentGetApi();
+
+            async function componentGetApi(){
+                const url = "http://wptwo.localhost/wp-json/ibl/api/interview/";
+                const response = await fetch(url);
+                const data = await response.json();
+                const greetingData = await data[0];
+    
+                console.log(greetingData['greeting']);
+                props.setAttributes({apidata: data.stringify});
+                
+            }
+        
+
+        
+
         return(
-            <p>This is the user input: {props.attributes.userinput}, {props.attributes.wpurl}, {props.attributes.clientid}, {props.attributes.clientsecret}</p>
+            <p>List of greetings in the DB: {props.attributes.apidata}</p>
             
         )
     }

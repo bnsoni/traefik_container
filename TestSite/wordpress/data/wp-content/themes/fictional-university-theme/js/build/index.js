@@ -198,16 +198,27 @@ registerBlockType('bnsgutengerg/testblock', {
       placeholder: "UserInput",
       value: props.attributes.userinput,
       onChange: updateUserinput
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
-      type: "text",
-      placeholder: "Post onChange",
-      value: props.attributes.apidata,
-      onChange: sendGreeting
-    }))];
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      type: "button",
+      onClick: sendGreeting
+    }, "Post Greeting"))];
   },
 
   save(props) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "This is the user input: ", props.attributes.userinput, ", ", props.attributes.wpurl, ", ", props.attributes.clientid, ", ", props.attributes.clientsecret);
+    componentGetApi();
+
+    async function componentGetApi() {
+      const url = "http://wptwo.localhost/wp-json/ibl/api/interview/";
+      const response = await fetch(url);
+      const data = await response.json();
+      const greetingData = await data[0];
+      console.log(greetingData['greeting']);
+      props.setAttributes({
+        apidata: data.stringify
+      });
+    }
+
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "List of greetings in the DB: ", props.attributes.apidata);
   }
 
 });
