@@ -1,5 +1,5 @@
 # traefik_container
-A traefik container with initial config
+A traefik container with initial config (Be sure to create external network 'traefik')
 
 Sample config for associated containers;
 
