@@ -6,7 +6,7 @@ Tags: OAuth2 Service, oauth2, OAuth provider, Provider, OAuth, OAuth client, Sin
 Requires at least: 4.7.2
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 4.1.9
+Stable tag: 4.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,6 +113,10 @@ For any upgrade or modification, PLEASE PLEASE PLEASE make a full backup of your
 1. Adding a Client
 
 == Changelog ==
+
+= 4.2.0 =
+* Updated/fixed subdirectory issues during Authorization Code Grant Type requests. (duplicate subdirectory issue)
+* PHP 8 Compatibility Check
 
 = 4.1.8 =
 * Updated ME method to now return user roles by default with an Oauth 2.0 access token

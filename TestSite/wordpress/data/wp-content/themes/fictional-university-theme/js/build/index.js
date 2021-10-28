@@ -203,24 +203,11 @@ registerBlockType('bnsgutengerg/testblock', {
       onClick: sendGreeting
     }, "Post Greeting"))];
   },
-
-  save(props) {
-    componentGetApi();
-
-    async function componentGetApi() {
-      const url = "http://wptwo.localhost/wp-json/ibl/api/interview/";
-      const response = await fetch(url);
-      const data = await response.json();
-      const greetingData = await data[0];
-      console.log(greetingData['greeting']);
-      props.setAttributes({
-        apidata: data.stringify
-      });
-    }
-
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "List of greetings in the DB: ", props.attributes.apidata);
+  save: function (props) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      type: "button"
+    }, "GET Greeting"));
   }
-
 });
 }();
 /******/ })()

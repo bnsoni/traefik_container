@@ -98,28 +98,13 @@ registerBlockType('bnsgutengerg/testblock', {
             
         ]);
 	},
+    save: function (props) {
 
-    save(props) {
-
-            componentGetApi();
-
-            async function componentGetApi(){
-                const url = "http://wptwo.localhost/wp-json/ibl/api/interview/";
-                const response = await fetch(url);
-                const data = await response.json();
-                const greetingData = await data[0];
-    
-                console.log(greetingData['greeting']);
-                props.setAttributes({apidata: data.stringify});
-                
-            }
-        
-
-        
-
-        return(
-            <p>List of greetings in the DB: {props.attributes.apidata}</p>
-            
-        )
+        return (
+            <div>
+                {/*<input type="text" placeholder = "Post onChange" value = {props.attributes.apidata} onChange={sendGreeting}/>*/}
+                <button type="button">GET Greeting</button>
+            </div>
+        );
     }
 });

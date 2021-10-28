@@ -1,5 +1,8 @@
 <?php
     get_header();
+?>
+    <p>This is page.php</p>
+    <?php
     while(have_posts()){
         the_post(); ?>
           

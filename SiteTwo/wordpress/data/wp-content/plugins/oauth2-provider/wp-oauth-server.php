@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP OAuth Server - CE
  * Plugin URI: http://wp-oauth.com
- * Version: 4.1.9
+ * Version: 4.2.0
  * Description: Full OAuth2 Server for WordPress. User Authorization Management Systems For WordPress.
  * Author: WP OAuth Server
  * Author URI: http://wp-oauth.com
@@ -19,7 +19,7 @@ if ( ! defined( 'WPOAUTH_FILE' ) ) {
 }
 
 if ( ! defined( 'WPOAUTH_VERSION' ) ) {
-	define( 'WPOAUTH_VERSION', '4.1.9' );
+	define( 'WPOAUTH_VERSION', '4.2.0' );
 }
 
 // localize

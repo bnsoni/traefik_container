@@ -234,11 +234,10 @@ if ( 'authorize' == $method ) {
 	 */
 	if ( ! is_user_logged_in() ) {
 		if ( $settings['home_url_modify'] ) {
-			wp_redirect( wp_login_url( home_url( $_SERVER['REQUEST_URI'] ) ) );
+			wp_redirect( wp_login_url( add_query_arg( $_GET, home_url( 'oauth/authorize' ) ) ) );
 			exit;
 		}
-
-		wp_redirect( wp_login_url( site_url( $_SERVER['REQUEST_URI'] ) ) );
+		wp_redirect( wp_login_url( add_query_arg( $_GET, site_url( 'oauth/authorize' ) ) ) );
 		exit;
 	}
 
