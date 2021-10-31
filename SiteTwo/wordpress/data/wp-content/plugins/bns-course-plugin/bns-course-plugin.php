@@ -52,6 +52,7 @@ function bnsNewInputCallback( $data ){
         return $userInput;
 }
 
+
 class bnsCoursePlugin{
     function __construct(){
         global $wpdb;

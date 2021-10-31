@@ -121,19 +121,24 @@ registerBlockType('bnsgutengerg/testblock', {
     },
     apidata: {
       type: "string"
+    },
+    accesstoken: {
+      type: "string"
     }
   },
   edit: function (props) {
     //props.setAttributes({apidata: "loading"});
     async function componentGetApi() {
-      const url = "http://localhost:9001/wp-json/ibl/api/interview";
-      const response = await fetch(url);
-      const data = await response.json();
-      const greetingData = await data[0];
-      console.log(greetingData['greeting']);
-      props.setAttributes({
-        apidata: greetingData['greeting']
+      const url = props.attributes.wpurl;
+      const accesstoken = props.attributes.accesstoken;
+      const userinput = props.attributes.userinput;
+      fetch(url + userinput.replace(/\s/g, '+')).then(response => response.json()).then(response => {
+        console.log(response); // Do something with response.
       });
+    }
+
+    function showAlert() {
+      alert("A test alert");
     } //componentGetApi();
 
 
@@ -161,14 +166,22 @@ registerBlockType('bnsgutengerg/testblock', {
       });
     }
 
+    function updateaccesstoken() {
+      props.setAttributes({
+        accesstoken: event.target.value
+      });
+    }
+
     async function sendGreeting() {
       const data = {
         "greeting": props.attributes.userinput
       };
+      const accesstoken = props.attributes.accesstoken;
       const options = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accesstoken
         },
         body: JSON.stringify(data)
       };
@@ -176,6 +189,20 @@ registerBlockType('bnsgutengerg/testblock', {
 
       const response = await fetch(posturl, options);
       console.log(response);
+    }
+
+    async function getGreeting() {
+      const accesstoken = props.attributes.accesstoken;
+      const options = {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + accesstoken
+        }
+      };
+      const geturl = props.attributes.wpurl + props.attributes.userinput.replace(/\s/g, '+'); //replace spaces with +
+
+      const response = await fetch(geturl, options);
+      console.log(response.json());
     }
 
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Provide a URL:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
@@ -193,6 +220,11 @@ registerBlockType('bnsgutengerg/testblock', {
       placeholder: "Client Secret",
       value: props.attributes.clientsecret,
       onChange: updateclientsecret
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Provide a Token:"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      placeholder: "Access Token",
+      value: props.attributes.accesstoken,
+      onChange: updateaccesstoken
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
       placeholder: "UserInput",
@@ -201,12 +233,20 @@ registerBlockType('bnsgutengerg/testblock', {
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
       type: "button",
       onClick: sendGreeting
-    }, "Post Greeting"))];
+    }, "Post a Greeting"))];
   },
   save: function (props) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-      type: "button"
-    }, "GET Greeting"));
+    return wp.element.createElement("div", {
+      className: "gblock"
+    }, wp.element.createElement("button", {
+      style: {
+        padding: '4px',
+        border: '2px solid black'
+      },
+      class: 'clicker'
+    }, "GET Greeting"), wp.element.createElement("p", {
+      class: 'apipanel'
+    }, ""));
   }
 });
 }();

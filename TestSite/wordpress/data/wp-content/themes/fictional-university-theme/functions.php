@@ -1,6 +1,17 @@
 <?php
 
 
+    add_action('init', 'wpse_add_front_end_clicker_script');
+    function wpse_add_front_end_clicker_script() {
+        wp_enqueue_script(
+            'clicker',
+            get_theme_file_uri('/build/clicker.js'),
+            array('jquery'),
+            filemtime( plugin_dir_path( __FILE__ ) . 'clicker.js' ),
+            true
+        );
+    }
+
 
     function universityRegisterSearch(){
         register_rest_route('university/v1', 'search', array(
@@ -67,6 +78,19 @@
     }
 
     add_action('after_setup_theme', 'university_features');
+
+    function add_custom_headers() {
+
+        add_filter( 'rest_pre_serve_request', function( $value ) {
+            header( 'Access-Control-Allow-Headers: Authorization, X-WP-Nonce,Content-Type, X-Requested-With');
+            header( 'Access-Control-Allow-Origin: *' );
+            header( 'Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE' );
+            header( 'Access-Control-Allow-Credentials: true' );
+    
+            return $value;
+        } );
+    }
+    add_action( 'rest_api_init', 'add_custom_headers', 15 );
 
 /**
  * Custom Gutenberg blocks

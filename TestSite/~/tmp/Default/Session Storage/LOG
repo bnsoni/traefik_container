@@ -1,0 +1,6 @@
+2021/11/01-00:33:32.286 27 Reusing MANIFEST /home/killbane/Documents/traefik_container/traefik_container/TestSite/~/tmp/Default/Session Storage/MANIFEST-000001
+2021/11/01-00:33:32.287 27 Recovering log #3
+2021/11/01-00:33:32.287 27 Reusing old log /home/killbane/Documents/traefik_container/traefik_container/TestSite/~/tmp/Default/Session Storage/000003.log 
+2021/11/01-02:02:57.570 59 Level-0 table #5: started
+2021/11/01-02:02:57.575 59 Level-0 table #5: 14557 bytes OK
+2021/11/01-02:02:57.577 59 Delete type=0 #3
