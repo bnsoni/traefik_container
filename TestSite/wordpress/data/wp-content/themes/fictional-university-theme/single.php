@@ -1,7 +1,7 @@
 <?php
     get_header();
 ?>
-    <p>This is single.php</p>
+    
     <?php
     while(have_posts()){
         the_post(); ?>

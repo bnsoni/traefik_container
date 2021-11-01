@@ -142,8 +142,13 @@ registerBlockType('bnsgutengerg/testblock', {
             "GET Greeting"
            ),
            wp.element.createElement(
-              "p", 
+               "br"
+           ),
+           
+           wp.element.createElement(
+              "textarea", 
               {
+                 style: {height: 300, width: 300},       
                  class: 'apipanel'
               },
               ""

@@ -62,11 +62,20 @@
       add_action('rest_api_init', 'university_custom_rest');
 
     function university_files(){
-        wp_enqueue_script('main-javascript-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
+        wp_enqueue_style('navigation_js', get_theme_file_uri('/build/navigation.js'));
+        #wp_enqueue_script('main-javascript-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
         wp_enqueue_style('op-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
         wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-        wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
-        wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
+        #wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
+        #wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
+        wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/iblstyle.css'));
+        
+        wp_enqueue_script( 'headjs', 'https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=5f6a07ca8e95d78378f34c6c', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'scriptone', 'https://ibleducation.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'scripttwo', 'https://ibleducation.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'scriptthree', 'https://ibleducation.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'scriptfour', 'https://ibleducation.com/wp-includes/js/utils.min.js?ver=5.8.1', array('jquery'), '1.0', true );
+        wp_enqueue_script( 'add_bundle_to_cart', 'https://ibleducation.com/wp-content/plugins/ibleducation-wp-blocks/js/add_bundle_to_cart.js?ver=1.0.1', array('jquery'), '1.0', true );
     }
 
     add_action('wp_enqueue_scripts', 'university_files');

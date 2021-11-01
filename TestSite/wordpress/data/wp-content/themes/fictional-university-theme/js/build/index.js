@@ -244,7 +244,11 @@ registerBlockType('bnsgutengerg/testblock', {
         border: '2px solid black'
       },
       class: 'clicker'
-    }, "GET Greeting"), wp.element.createElement("p", {
+    }, "GET Greeting"), wp.element.createElement("br"), wp.element.createElement("textarea", {
+      style: {
+        height: 300,
+        width: 300
+      },
       class: 'apipanel'
     }, ""));
   }
